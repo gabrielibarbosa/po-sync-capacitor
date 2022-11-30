@@ -1,0 +1,7 @@
+{
+  "name": "po-sync-getting-started",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
