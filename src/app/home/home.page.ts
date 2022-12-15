@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { PoSyncService } from '@po-ui/ng-sync';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -7,6 +9,18 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  conference: any;
+
+  constructor(private poSync: PoSyncService) {
+    this.poSync.onSync().subscribe(() => this.loadHomePage());
+  }
+
+  async loadHomePage() {
+    this.conference = await this.poSync.getModel('conference').findOne().exec();
+  }
+
+  clear() {
+    this.conference = null;
+  }
 
 }
